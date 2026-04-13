@@ -82,5 +82,6 @@ foreach (var flight in flightsToParis)
 {
     Console.WriteLine(
         $"- Id={flight.FlightId}, Date={flight.FlightDate:dd/MM/yyyy HH:mm:ss}, " +
-        $"Destination={flight.Destination}, Plane={flight.Plane?.PlaneType}");
+        $"Destination={flight.Destination}, Duration={flight.EstimatedDuration}, " +
+        $"EffectiveArrival={flight.EffectiveArrival:dd/MM/yyyy HH:mm:ss}, Plane={flight.Plane?.PlaneType}");
 }
