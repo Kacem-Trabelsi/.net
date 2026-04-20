@@ -8,7 +8,7 @@ public interface IFlightMethods
     List<DateTime> GetFlightDates(string destination);
     List<DateTime> GetFlightDatesForeach(string destination);
     List<Flight> GetFlights(string filterType, string filterValue);
-    List<DateTime> ShowFlightDetails(Plane plane);
+    List<string> ShowFlightDetails(Plane plane);
     int ProgrammedFlightNumber(DateTime startDate);
     double DurationAverage(string destination);
     List<Flight> OrderedDurationFlights();
@@ -22,7 +22,7 @@ public interface IFlightMethods
 
     // Same operations using LINQ method syntax
     List<DateTime> GetFlightDatesMs(string destination);
-    List<DateTime> ShowFlightDetailsMs(Plane plane);
+    List<string> ShowFlightDetailsMs(Plane plane);
     int ProgrammedFlightNumberMs(DateTime startDate);
     double DurationAverageMs(string destination);
     List<Flight> OrderedDurationFlightsMs();

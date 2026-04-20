@@ -90,9 +90,9 @@ Console.WriteLine();
 Console.WriteLine("=== TP3 - LINQ (Query Syntax) ===");
 
 Console.WriteLine("ShowFlightDetails(Airbus):");
-foreach (var d in flightMethods.ShowFlightDetails(TestData.AirbusPlane))
+foreach (var detail in flightMethods.ShowFlightDetails(TestData.AirbusPlane))
 {
-    Console.WriteLine($"- {d:dd/MM/yyyy HH:mm:ss}");
+    Console.WriteLine($"- {detail}");
 }
 
 Console.WriteLine($"ProgrammedFlightNumber(01/01/2022): {flightMethods.ProgrammedFlightNumber(new DateTime(2022, 1, 1))}");
@@ -134,7 +134,11 @@ Console.WriteLine($"ExistsParisFlight: {flightMethods.ExistsParisFlight()}");
 Console.WriteLine();
 Console.WriteLine("=== TP3 - LINQ (Method Syntax) ===");
 Console.WriteLine($"GetFlightDatesMs(\"Paris\"): {flightMethods.GetFlightDatesMs("Paris").Count} dates");
-Console.WriteLine($"ShowFlightDetailsMs(Airbus): {flightMethods.ShowFlightDetailsMs(TestData.AirbusPlane).Count} dates");
+Console.WriteLine("ShowFlightDetailsMs(Airbus):");
+foreach (var detail in flightMethods.ShowFlightDetailsMs(TestData.AirbusPlane))
+{
+    Console.WriteLine($"- {detail}");
+}
 Console.WriteLine($"ProgrammedFlightNumberMs(01/01/2022): {flightMethods.ProgrammedFlightNumberMs(new DateTime(2022, 1, 1))}");
 Console.WriteLine($"DurationAverageMs(\"Paris\"): {flightMethods.DurationAverageMs("Paris")}");
 Console.WriteLine($"LongestFlightMs Id: {flightMethods.LongestFlightMs()?.FlightId}");

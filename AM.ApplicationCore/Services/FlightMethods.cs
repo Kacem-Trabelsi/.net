@@ -61,11 +61,11 @@ public class FlightMethods : IFlightMethods
     }
 
     // I. LINQ query syntax
-    public List<DateTime> ShowFlightDetails(Plane plane)
+    public List<string> ShowFlightDetails(Plane plane)
     {
         var query = from flight in Flights
                     where flight.Plane == plane
-                    select flight.FlightDate;
+                    select $"Destination: {flight.Destination} - Date: {flight.FlightDate:dd/MM/yyyy} - Heure: {flight.FlightDate:HH:mm:ss}";
         return query.ToList();
     }
 
@@ -160,10 +160,10 @@ public class FlightMethods : IFlightMethods
             .Select(f => f.FlightDate)
             .ToList();
 
-    public List<DateTime> ShowFlightDetailsMs(Plane plane) =>
+    public List<string> ShowFlightDetailsMs(Plane plane) =>
         Flights
             .Where(f => f.Plane == plane)
-            .Select(f => f.FlightDate)
+            .Select(f => $"Destination: {f.Destination} - Date: {f.FlightDate:dd/MM/yyyy} - Heure: {f.FlightDate:HH:mm:ss}")
             .ToList();
 
     public int ProgrammedFlightNumberMs(DateTime startDate) =>
