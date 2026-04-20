@@ -85,3 +85,63 @@ foreach (var flight in flightsToParis)
         $"Destination={flight.Destination}, Duration={flight.EstimatedDuration}, " +
         $"EffectiveArrival={flight.EffectiveArrival:dd/MM/yyyy HH:mm:ss}, Plane={flight.Plane?.PlaneType}");
 }
+
+Console.WriteLine();
+Console.WriteLine("=== TP3 - LINQ (Query Syntax) ===");
+
+Console.WriteLine("ShowFlightDetails(Airbus):");
+foreach (var d in flightMethods.ShowFlightDetails(TestData.AirbusPlane))
+{
+    Console.WriteLine($"- {d:dd/MM/yyyy HH:mm:ss}");
+}
+
+Console.WriteLine($"ProgrammedFlightNumber(01/01/2022): {flightMethods.ProgrammedFlightNumber(new DateTime(2022, 1, 1))}");
+Console.WriteLine($"DurationAverage(\"Paris\"): {flightMethods.DurationAverage("Paris")}");
+Console.WriteLine($"LongestFlight Id: {flightMethods.LongestFlight()?.FlightId}");
+
+Console.WriteLine("OrderedDurationFlights:");
+foreach (var f in flightMethods.OrderedDurationFlights())
+{
+    Console.WriteLine($"- Id={f.FlightId}, Duration={f.EstimatedDuration}");
+}
+
+Console.WriteLine("SeniorTravellers (flight 1):");
+foreach (var t in flightMethods.SeniorTravellers(TestData.ListFlights[0]))
+{
+    Console.WriteLine($"- {t.UpperFullName()} ({t.BirthDate:dd/MM/yyyy})");
+}
+
+Console.WriteLine("DestinationGroupedFlights:");
+foreach (var group in flightMethods.DestinationGroupedFlights())
+{
+    Console.WriteLine($"Destination {group.Key}");
+    foreach (var d in group.Value)
+    {
+        Console.WriteLine($"  Decollage: {d:dd/MM/yyyy HH:mm:ss}");
+    }
+}
+
+Console.WriteLine("FlightCountByDestination:");
+foreach (var item in flightMethods.FlightCountByDestination())
+{
+    Console.WriteLine($"- {item.Key}: {item.Value}");
+}
+
+Console.WriteLine($"MostOccupiedFlight Id: {flightMethods.MostOccupiedFlight()?.FlightId}");
+Console.WriteLine($"GetDestinations: {string.Join(", ", flightMethods.GetDestinations())}");
+Console.WriteLine($"ExistsParisFlight: {flightMethods.ExistsParisFlight()}");
+
+Console.WriteLine();
+Console.WriteLine("=== TP3 - LINQ (Method Syntax) ===");
+Console.WriteLine($"GetFlightDatesMs(\"Paris\"): {flightMethods.GetFlightDatesMs("Paris").Count} dates");
+Console.WriteLine($"ShowFlightDetailsMs(Airbus): {flightMethods.ShowFlightDetailsMs(TestData.AirbusPlane).Count} dates");
+Console.WriteLine($"ProgrammedFlightNumberMs(01/01/2022): {flightMethods.ProgrammedFlightNumberMs(new DateTime(2022, 1, 1))}");
+Console.WriteLine($"DurationAverageMs(\"Paris\"): {flightMethods.DurationAverageMs("Paris")}");
+Console.WriteLine($"LongestFlightMs Id: {flightMethods.LongestFlightMs()?.FlightId}");
+Console.WriteLine($"OrderedDurationFlightsMs first Id: {flightMethods.OrderedDurationFlightsMs().FirstOrDefault()?.FlightId}");
+Console.WriteLine($"SeniorTravellersMs count: {flightMethods.SeniorTravellersMs(TestData.ListFlights[0]).Count}");
+Console.WriteLine($"DestinationGroupedFlightsMs groups: {flightMethods.DestinationGroupedFlightsMs().Count}");
+Console.WriteLine($"FlightCountByDestinationMs groups: {flightMethods.FlightCountByDestinationMs().Count}");
+Console.WriteLine($"MostOccupiedFlightMs Id: {flightMethods.MostOccupiedFlightMs()?.FlightId}");
+Console.WriteLine($"GetDestinationsMs: {string.Join(", ", flightMethods.GetDestinationsMs())}");
+Console.WriteLine($"ExistsParisFlightMs: {flightMethods.ExistsParisFlightMs()}");

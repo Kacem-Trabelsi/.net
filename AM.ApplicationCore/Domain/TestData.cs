@@ -2,33 +2,33 @@ namespace AM.ApplicationCore.Domain;
 
 public static class TestData
 {
-    public static Plane AirbusPlane = new()
+    // Planes
+    public static Plane BoingPlane = new()
     {
-        PlaneId = 1,
+        PlaneType = PlaneType.Boing,
+        Capacity = 150,
+        ManufactureDate = new DateTime(2015, 2, 3)
+    };
+
+    public static Plane Airbusplane = new()
+    {
         PlaneType = PlaneType.Airbus,
         Capacity = 250,
         ManufactureDate = new DateTime(2020, 11, 11)
     };
 
-    public static Plane BoeingPlane = new()
-    {
-        PlaneId = 2,
-        PlaneType = PlaneType.Boeing,
-        Capacity = 150,
-        ManufactureDate = new DateTime(2015, 2, 3)
-    };
-
-    public static Staff Captain = new()
+    // Staffs
+    public static Staff captain = new()
     {
         FirstName = "captain",
         LastName = "captain",
-        EmailAddress = "Captain.captain@gmail.com",
+        EmailAddress = "captain.captain@gmail.com",
         BirthDate = new DateTime(1965, 1, 1),
         EmploymentDate = new DateTime(1999, 1, 1),
         Salary = 99999
     };
 
-    public static Staff Hostess1 = new()
+    public static Staff hostess1 = new()
     {
         FirstName = "hostess1",
         LastName = "hostess1",
@@ -38,7 +38,7 @@ public static class TestData
         Salary = 999
     };
 
-    public static Staff Hostess2 = new()
+    public static Staff hostess2 = new()
     {
         FirstName = "hostess2",
         LastName = "hostess2",
@@ -48,118 +48,132 @@ public static class TestData
         Salary = 999
     };
 
-    public static Traveller Traveller1 = new()
+    // Travellers
+    public static Traveller traveller1 = new()
     {
-        FirstName = "Traveller1",
-        LastName = "Traveller1",
-        EmailAddress = "Traveller1.Traveller1@gmail.com",
+        FirstName = "traveller1",
+        LastName = "traveller1",
+        EmailAddress = "traveller1.traveller1@gmail.com",
         BirthDate = new DateTime(1980, 1, 1),
-        HealthInformation = "No troubles",
+        HealthInformation = "no troubles",
         Nationality = "American"
     };
 
-    public static Traveller Traveller2 = new()
+    public static Traveller traveller2 = new()
     {
-        FirstName = "Traveller2",
-        LastName = "Traveller2",
-        EmailAddress = "Traveller2.Traveller2@gmail.com",
+        FirstName = "traveller2",
+        LastName = "traveller2",
+        EmailAddress = "traveller2.traveller2@gmail.com",
         BirthDate = new DateTime(1981, 1, 1),
         HealthInformation = "Some troubles",
         Nationality = "French"
     };
 
-    public static Traveller Traveller3 = new()
+    public static Traveller traveller3 = new()
     {
-        FirstName = "Traveller3",
-        LastName = "Traveller3",
-        EmailAddress = "Traveller3.Traveller3@gmail.com",
+        FirstName = "traveller3",
+        LastName = "traveller3",
+        EmailAddress = "traveller3.traveller3@gmail.com",
         BirthDate = new DateTime(1982, 1, 1),
-        HealthInformation = "No troubles",
+        HealthInformation = "no troubles",
         Nationality = "Tunisian"
     };
 
-    public static Traveller Traveller4 = new()
+    public static Traveller traveller4 = new()
     {
-        FirstName = "Traveller4",
-        LastName = "Traveller4",
-        EmailAddress = "Traveller4.Traveller4@gmail.com",
+        FirstName = "traveller4",
+        LastName = "traveller4",
+        EmailAddress = "traveller4.traveller4@gmail.com",
         BirthDate = new DateTime(1983, 1, 1),
         HealthInformation = "Some troubles",
         Nationality = "American"
     };
 
-    public static Traveller Traveller5 = new()
+    public static Traveller traveller5 = new()
     {
-        FirstName = "Traveller5",
-        LastName = "Traveller5",
-        EmailAddress = "Traveller5.Traveller5@gmail.com",
+        FirstName = "traveller5",
+        LastName = "traveller5",
+        EmailAddress = "traveller5.traveller5@gmail.com",
         BirthDate = new DateTime(1984, 1, 1),
         HealthInformation = "Some troubles",
         Nationality = "Spanish"
     };
 
-    public static List<Flight> ListFlights = new()
+    // Flights
+    public static Flight flight1 = new()
     {
-        new Flight
-        {
-            FlightId = 1,
-            FlightDate = new DateTime(2022, 1, 1, 15, 10, 10),
-            Destination = "Paris",
-            Departure = "Tunis",
-            EffectiveArrival = new DateTime(2022, 1, 1, 17, 10, 10),
-            EstimatedDuration = 110,
-            Plane = AirbusPlane,
-            Passengers = new List<Passenger> { Traveller1, Traveller2, Traveller3, Traveller4, Traveller5 }
-        },
-        new Flight
-        {
-            FlightId = 2,
-            FlightDate = new DateTime(2022, 2, 1, 21, 10, 10),
-            Destination = "Paris",
-            Departure = "Tunis",
-            EffectiveArrival = new DateTime(2022, 2, 2, 23, 10, 10),
-            EstimatedDuration = 105,
-            Plane = BoeingPlane
-        },
-        new Flight
-        {
-            FlightId = 3,
-            FlightDate = new DateTime(2022, 3, 1, 5, 10, 10),
-            Destination = "Paris",
-            Departure = "Tunis",
-            EffectiveArrival = new DateTime(2022, 3, 1, 6, 40, 10),
-            EstimatedDuration = 100,
-            Plane = BoeingPlane
-        },
-        new Flight
-        {
-            FlightId = 4,
-            FlightDate = new DateTime(2022, 4, 1, 6, 10, 10),
-            Destination = "Madrid",
-            Departure = "Tunis",
-            EffectiveArrival = new DateTime(2022, 4, 1, 8, 10, 10),
-            EstimatedDuration = 130,
-            Plane = BoeingPlane
-        },
-        new Flight
-        {
-            FlightId = 5,
-            FlightDate = new DateTime(2022, 5, 1, 17, 10, 10),
-            Destination = "Madrid",
-            Departure = "Tunis",
-            EffectiveArrival = new DateTime(2022, 5, 1, 18, 50, 10),
-            EstimatedDuration = 105,
-            Plane = BoeingPlane
-        },
-        new Flight
-        {
-            FlightId = 6,
-            FlightDate = new DateTime(2022, 6, 1, 20, 10, 10),
-            Destination = "Lisbonne",
-            Departure = "Tunis",
-            EffectiveArrival = new DateTime(2022, 6, 1, 22, 30, 10),
-            EstimatedDuration = 200,
-            Plane = AirbusPlane
-        }
+        FlightId = 1,
+        FlightDate = new DateTime(2022, 1, 1, 15, 10, 10),
+        Destination = "Paris",
+        EffectiveArrival = new DateTime(2022, 1, 1, 17, 10, 10),
+        EstimatedDuration = 110,
+        Passengers = new List<Passenger> { captain, hostess1, hostess2, traveller1, traveller2, traveller3, traveller4, traveller5 },
+        MyPlane = Airbusplane
     };
+
+    public static Flight flight2 = new()
+    {
+        FlightId = 2,
+        FlightDate = new DateTime(2022, 2, 1, 21, 10, 10),
+        Destination = "Paris",
+        EffectiveArrival = new DateTime(2022, 2, 1, 23, 10, 10),
+        EstimatedDuration = 105,
+        MyPlane = BoingPlane
+    };
+
+    public static Flight flight3 = new()
+    {
+        FlightId = 3,
+        FlightDate = new DateTime(2022, 3, 1, 5, 10, 10),
+        Destination = "Paris",
+        EffectiveArrival = new DateTime(2022, 3, 1, 6, 40, 10),
+        EstimatedDuration = 100,
+        MyPlane = BoingPlane
+    };
+
+    public static Flight flight4 = new()
+    {
+        FlightId = 4,
+        FlightDate = new DateTime(2022, 4, 1, 6, 10, 10),
+        Destination = "Madrid",
+        EffectiveArrival = new DateTime(2022, 4, 1, 8, 10, 10),
+        EstimatedDuration = 130,
+        MyPlane = BoingPlane
+    };
+
+    public static Flight flight5 = new()
+    {
+        FlightId = 5,
+        FlightDate = new DateTime(2022, 5, 1, 17, 10, 10),
+        Destination = "Madrid",
+        EffectiveArrival = new DateTime(2022, 5, 1, 18, 50, 10),
+        EstimatedDuration = 105,
+        MyPlane = BoingPlane
+    };
+
+    public static Flight flight6 = new()
+    {
+        FlightId = 6,
+        FlightDate = new DateTime(2022, 6, 1, 20, 10, 10),
+        Destination = "Lisbonne",
+        EffectiveArrival = new DateTime(2022, 6, 1, 22, 30, 10),
+        EstimatedDuration = 200,
+        MyPlane = Airbusplane
+    };
+
+    // test list
+    public static List<Flight> listFlights = new() { flight1, flight2, flight3, flight4, flight5, flight6 };
+
+    // Compatibility aliases used by previous TP code
+    public static Plane AirbusPlane => Airbusplane;
+    public static Plane BoeingPlane => BoingPlane;
+    public static Staff Captain => captain;
+    public static Staff Hostess1 => hostess1;
+    public static Staff Hostess2 => hostess2;
+    public static Traveller Traveller1 => traveller1;
+    public static Traveller Traveller2 => traveller2;
+    public static Traveller Traveller3 => traveller3;
+    public static Traveller Traveller4 => traveller4;
+    public static Traveller Traveller5 => traveller5;
+    public static List<Flight> ListFlights => listFlights;
 }

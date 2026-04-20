@@ -10,6 +10,11 @@ public class Flight
     public double EstimatedDuration { get; set; }
 
     public Plane? Plane { get; set; }
+    public Plane? MyPlane
+    {
+        get => Plane;
+        set => Plane = value;
+    }
 
     public ICollection<Passenger> Passengers { get; set; } = new List<Passenger>();
 

@@ -59,4 +59,157 @@ public class FlightMethods : IFlightMethods
 
         return result;
     }
+
+    // I. LINQ query syntax
+    public List<DateTime> ShowFlightDetails(Plane plane)
+    {
+        var query = from flight in Flights
+                    where flight.Plane == plane
+                    select flight.FlightDate;
+        return query.ToList();
+    }
+
+    public int ProgrammedFlightNumber(DateTime startDate)
+    {
+        var query = from flight in Flights
+                    where flight.FlightDate >= startDate && flight.FlightDate <= startDate.AddDays(7)
+                    select flight;
+        return query.Count();
+    }
+
+    public double DurationAverage(string destination)
+    {
+        var query = from flight in Flights
+                    where flight.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase)
+                    select flight.EstimatedDuration;
+        return query.Any() ? query.Average() : 0;
+    }
+
+    public List<Flight> OrderedDurationFlights()
+    {
+        var query = from flight in Flights
+                    orderby flight.EstimatedDuration descending
+                    select flight;
+        return query.ToList();
+    }
+
+    public Flight? LongestFlight()
+    {
+        var ordered = OrderedDurationFlights();
+        return ordered.FirstOrDefault();
+    }
+
+    public List<Traveller> SeniorTravellers(Flight flight)
+    {
+        var query = from passenger in flight.Passengers
+                    where passenger is Traveller
+                    orderby passenger.BirthDate
+                    select (Traveller)passenger;
+        return query.Take(3).ToList();
+    }
+
+    public Dictionary<string, List<DateTime>> DestinationGroupedFlights()
+    {
+        var query = from flight in Flights
+                    group flight by flight.Destination into g
+                    select new
+                    {
+                        Destination = g.Key,
+                        Dates = (from f in g select f.FlightDate).ToList()
+                    };
+
+        return query.ToDictionary(x => x.Destination, x => x.Dates);
+    }
+
+    public Dictionary<string, int> FlightCountByDestination()
+    {
+        var query = from flight in Flights
+                    group flight by flight.Destination into g
+                    select new { Destination = g.Key, Count = g.Count() };
+
+        return query.ToDictionary(x => x.Destination, x => x.Count);
+    }
+
+    public Flight? MostOccupiedFlight()
+    {
+        var query = from flight in Flights
+                    orderby flight.Passengers.Count descending
+                    select flight;
+        return query.FirstOrDefault();
+    }
+
+    public List<string> GetDestinations()
+    {
+        var query = (from flight in Flights
+                     select flight.Destination).Distinct();
+        return query.ToList();
+    }
+
+    public bool ExistsParisFlight()
+    {
+        var query = from flight in Flights
+                    where flight.Destination.Equals("Paris", StringComparison.OrdinalIgnoreCase)
+                    select flight;
+        return query.Any();
+    }
+
+    // II. LINQ predefined methods syntax
+    public List<DateTime> GetFlightDatesMs(string destination) =>
+        Flights
+            .Where(f => f.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase))
+            .Select(f => f.FlightDate)
+            .ToList();
+
+    public List<DateTime> ShowFlightDetailsMs(Plane plane) =>
+        Flights
+            .Where(f => f.Plane == plane)
+            .Select(f => f.FlightDate)
+            .ToList();
+
+    public int ProgrammedFlightNumberMs(DateTime startDate) =>
+        Flights.Count(f => f.FlightDate >= startDate && f.FlightDate <= startDate.AddDays(7));
+
+    public double DurationAverageMs(string destination) =>
+        Flights.Any(f => f.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase))
+            ? Flights
+                .Where(f => f.Destination.Equals(destination, StringComparison.OrdinalIgnoreCase))
+                .Average(f => f.EstimatedDuration)
+            : 0;
+
+    public List<Flight> OrderedDurationFlightsMs() =>
+        Flights.OrderByDescending(f => f.EstimatedDuration).ToList();
+
+    public Flight? LongestFlightMs() =>
+        Flights.OrderByDescending(f => f.EstimatedDuration).FirstOrDefault();
+
+    public List<Traveller> SeniorTravellersMs(Flight flight) =>
+        flight.Passengers
+            .OfType<Traveller>()
+            .OrderBy(t => t.BirthDate)
+            .Take(3)
+            .ToList();
+
+    public Dictionary<string, List<DateTime>> DestinationGroupedFlightsMs() =>
+        Flights
+            .GroupBy(f => f.Destination)
+            .ToDictionary(g => g.Key, g => g.Select(f => f.FlightDate).ToList());
+
+    public Dictionary<string, int> FlightCountByDestinationMs() =>
+        Flights
+            .GroupBy(f => f.Destination)
+            .ToDictionary(g => g.Key, g => g.Count());
+
+    public Flight? MostOccupiedFlightMs() =>
+        Flights
+            .OrderByDescending(f => f.Passengers.Count)
+            .FirstOrDefault();
+
+    public List<string> GetDestinationsMs() =>
+        Flights
+            .Select(f => f.Destination)
+            .Distinct()
+            .ToList();
+
+    public bool ExistsParisFlightMs() =>
+        Flights.Any(f => f.Destination.Equals("Paris", StringComparison.OrdinalIgnoreCase));
 }
