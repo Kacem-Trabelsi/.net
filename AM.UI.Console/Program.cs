@@ -149,3 +149,13 @@ Console.WriteLine($"FlightCountByDestinationMs groups: {flightMethods.FlightCoun
 Console.WriteLine($"MostOccupiedFlightMs Id: {flightMethods.MostOccupiedFlightMs()?.FlightId}");
 Console.WriteLine($"GetDestinationsMs: {string.Join(", ", flightMethods.GetDestinationsMs())}");
 Console.WriteLine($"ExistsParisFlightMs: {flightMethods.ExistsParisFlightMs()}");
+
+Console.WriteLine();
+Console.WriteLine("=== TP3 - Extension Method Test ===");
+var passengerToFormat = new Passenger
+{
+    FirstName = "kacem",
+    LastName = "trabelsi"
+};
+Console.WriteLine($"Avant: {passengerToFormat.FirstName} {passengerToFormat.LastName}");
+Console.WriteLine($"Apres: {passengerToFormat.UpperFullName()}");
